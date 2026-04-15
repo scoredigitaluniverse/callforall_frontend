@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 173 58% 39%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --border: 0 0% 90%;
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Tamil font override */
+  .tamil-text {
+    @apply font-tamil;
+  }
+
+  /* Smooth scrolling for horizontal service cards */
+  .scroll-smooth-x {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Keep leaflet map layers below sticky nav, dropdowns, and sheets */
+  .leaflet-container {
+    z-index: 0 !important;
+  }
+
+  .leaflet-pane,
+  .leaflet-top,
+  .leaflet-bottom,
+  .leaflet-control {
+    z-index: 10 !important;
+  }
+
+}
+
+@layer components {
+  @keyframes logoWatermarkSlide {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 260px 0;
+    }
+  }
+
+  .logo-watermark-bg {
+    background-image: url('/Photos/icons/logo.jpeg');
+    background-repeat: repeat;
+    background-size: 120px auto;
+    opacity: 0.08;
+    filter: grayscale(1) contrast(1.1);
+    animation: logoWatermarkSlide 18s linear infinite;
+  }
+
+  @keyframes homeWatermarkDrift {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 260px 220px;
+    }
+  }
+
+  .home-bg-watermark {
+    background-image:
+      linear-gradient(to right, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+      url('/Photos/icons/logo.jpeg');
+    background-size: 56px 56px, 56px 56px, 140px auto;
+    background-repeat: repeat, repeat, repeat;
+    background-blend-mode: normal, normal, luminosity;
+    opacity: 0.14;
+    filter: grayscale(1);
+    animation: homeWatermarkDrift 40s linear infinite;
+  }
+
+  @keyframes loginWatermarkDrift {
+    from {
+      background-position: 0 0, 0 0, 0 0;
+    }
+    to {
+      background-position: 320px 220px, 220px 320px, 260px 180px;
+    }
+  }
+
+  .login-bg-watermark {
+    background-image:
+      radial-gradient(circle at 25% 20%, rgba(37, 99, 235, 0.12), transparent 45%),
+      radial-gradient(circle at 80% 75%, rgba(14, 165, 233, 0.1), transparent 40%),
+      url('/Photos/icons/logo.jpeg');
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-size: cover, cover, 140px auto;
+    background-blend-mode: normal, normal, luminosity;
+    opacity: 0.18;
+    filter: grayscale(1);
+    animation: loginWatermarkDrift 48s linear infinite;
+  }
+
+  @keyframes loginHeroShimmer {
+    from {
+      transform: translateX(-140%) skewX(-16deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.45;
+    }
+    60% {
+      opacity: 0.2;
+    }
+    to {
+      transform: translateX(300%) skewX(-16deg);
+      opacity: 0;
+    }
+  }
+
+  .login-hero-card {
+    backdrop-filter: blur(3px);
+  }
+
+  .login-hero-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 34px 84px rgba(11, 61, 145, 0.42);
+  }
+
+  .login-hero-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 30% 35%, black 30%, transparent 88%);
+    opacity: 0.26;
+  }
+
+  .login-hero-shimmer {
+    background: linear-gradient(
+      112deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.34) 48%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    filter: blur(1px);
+    animation: loginHeroShimmer 8.5s ease-in-out infinite;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white font-medium py-3 px-6 rounded-lg transition-all shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-white border-2 border-primary-600 text-primary-600 hover:bg-primary-50 font-medium py-3 px-6 rounded-lg transition-colors;
+  }
+
+  .card {
+    @apply bg-card rounded-lg shadow-card p-4 border border-border;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border-2 border-border rounded-lg focus:border-primary-500 focus:outline-none transition-colors;
+  }
+}
