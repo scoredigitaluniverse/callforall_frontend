@@ -1,5 +1,5 @@
-export const LOCAL_BACKEND_URL = 'http://localhost:5000';
-export const PRODUCTION_BACKEND_URL = 'https://call-for-all-backend.vercel.app';
+export const LOCAL_BACKEND_URL = 'https://call-for-all-backend.onrender.com';
+export const PRODUCTION_BACKEND_URL = 'https://call-for-all-backend.onrender.com';
 
 const isLocalRuntime = () => {
   if (typeof window === 'undefined') {
