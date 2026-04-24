@@ -1,5 +1,5 @@
-const LOCAL_BACKEND_URL = 'http://localhost:5000';
-const PRODUCTION_BACKEND_URL = 'https://call-for-all-backend.vercel.app';
+const LOCAL_BACKEND_URL = 'https://call-for-all-backend.onrender.com';
+const PRODUCTION_BACKEND_URL = 'https://call-for-all-backend.onrender.com';
 
 const trimTrailingSlash = (value: string) => value.replace(/\/+$/, '');
 
